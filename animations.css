@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Legacy Buddy: Animations
+   animations.css
+   Keyframes and utility classes for scroll reveals, floating elements,
+   score fills, and attention pulses. Load AFTER global.css.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Keyframes
+   -------------------------------------------------------------------------- */
+
+@keyframes lb-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lb-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* The score ring fill is driven by JS, which sets the target
+   --lb-score-offset custom property. This keyframe provides the
+   animated transition from a full (empty) ring to the target offset. */
+@keyframes lb-score-fill {
+  from {
+    stroke-dashoffset: var(--lb-score-circumference, 251);
+  }
+  to {
+    stroke-dashoffset: var(--lb-score-offset, 251);
+  }
+}
+
+@keyframes lb-slide-in-right {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes lb-pulse-gold {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(42, 58, 212, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(42, 58, 212, 0);
+  }
+}
+
+/* Used for the progress bar and pillar bar grow-in */
+@keyframes lb-grow-width {
+  from {
+    width: 0;
+  }
+}
+
+/* Spinner for form submission state */
+@keyframes lb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll-reveal utilities
+   Elements tagged .lb-animate start hidden and animate in once the
+   IntersectionObserver in main.js adds .lb-visible.
+   -------------------------------------------------------------------------- */
+
+.lb-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--lb-transition-slow), transform var(--lb-transition-slow);
+  will-change: opacity, transform;
+}
+
+.lb-animate.lb-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lb-animate-delay-1 {
+  transition-delay: 100ms;
+}
+
+.lb-animate-delay-2 {
+  transition-delay: 200ms;
+}
+
+.lb-animate-delay-3 {
+  transition-delay: 300ms;
+}
+
+.lb-animate-delay-4 {
+  transition-delay: 400ms;
+}
+
+/* --------------------------------------------------------------------------
+   Standalone animation utilities
+   -------------------------------------------------------------------------- */
+
+.lb-float {
+  animation: lb-float 3s ease-in-out infinite;
+}
+
+.lb-pulse {
+  animation: lb-pulse-gold 2.4s ease-in-out infinite;
+}
+
+.lb-slide-in-right {
+  animation: lb-slide-in-right var(--lb-transition-slow) ease both;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced-motion: honour the user's system preference.
+   All decorative motion is disabled; content still becomes visible.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .lb-animate {
+    opacity: 1;
+    transform: none;
+  }
+
+  .lb-float,
+  .lb-pulse {
+    animation: none;
+  }
+}
