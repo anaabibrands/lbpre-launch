@@ -37,8 +37,8 @@
      Existing component CSS references these names; they now resolve to the
      Ink + Emerald + Ivory palette so the whole system re-skins from here.
      --------------------------------------------------------------------- */
-  --lb-navy: #0C1222;
-  --lb-navy-dark: #070B16;
+  --lb-navy: #2033B6;          /* solid blue: dark sections, hero, nav, footer */
+  --lb-navy-dark: #1A2A99;     /* slightly deeper blue for elevated dark cards */
   --lb-navy-light: #12B886;
   --lb-blue: #12B886;          /* primary accent -> emerald */
   --lb-blue-strong: #0FA277;   /* button base */
