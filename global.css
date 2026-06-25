@@ -108,13 +108,14 @@ b {
 .lb-skip-link {
   position: absolute;
   left: 50%;
-  top: -64px;
+  top: -120px;
   transform: translateX(-50%);
   z-index: calc(var(--lb-z-modal) + 10);
   background: var(--lb-gold);
-  color: var(--lb-navy);
+  color: var(--lb-ink);
   font-family: var(--lb-font-heading);
   font-weight: 600;
+  white-space: nowrap;
   padding: var(--lb-space-3) var(--lb-space-6);
   border-radius: var(--lb-radius-md);
   transition: top var(--lb-transition-base);
@@ -181,12 +182,12 @@ b {
 }
 
 .lb-band--navy-gradient {
-  background: var(--lb-grad-hero);
+  background-color: var(--lb-navy);
   color: var(--lb-white);
 }
 
 .lb-band--navy-soft {
-  background: linear-gradient(180deg, var(--lb-navy-dark) 0%, var(--lb-navy) 100%);
+  background-color: var(--lb-navy);
   color: var(--lb-white);
 }
 
@@ -496,11 +497,11 @@ b {
    light-hero pages via .lb-nav--solid in markup. */
 .lb-nav.lb-nav--scrolled,
 .lb-nav--solid {
-  background-color: rgba(12, 18, 34, 0.72);
+  background-color: rgba(32, 51, 182, 0.78);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   backdrop-filter: blur(16px) saturate(140%);
-  box-shadow: 0 10px 34px rgba(7, 11, 22, 0.30);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 34px rgba(16, 22, 80, 0.30);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .lb-nav__inner {
@@ -1610,18 +1611,10 @@ body.lb-no-scroll {
   padding-top: calc(var(--lb-space-16) + var(--lb-nav-height));
 }
 
-/* Soft aurora glow for depth and a more fluid feel */
+/* Solid background: aurora removed in favor of a flat blue hero */
 .lb-band--hero::before {
   content: '';
-  position: absolute;
-  inset: -10%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(38% 48% at 15% 18%, rgba(33, 217, 161, 0.30), transparent 70%),
-    radial-gradient(34% 42% at 86% 12%, rgba(18, 184, 134, 0.20), transparent 70%),
-    radial-gradient(48% 58% at 80% 88%, rgba(15, 162, 119, 0.34), transparent 72%);
-  animation: lb-aurora 18s ease-in-out infinite alternate;
+  display: none;
 }
 
 .lb-band--hero > * {
